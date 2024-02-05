@@ -1,2 +1,0 @@
-/usr/bin/ar qc libmoteur3D.a CMakeFiles/moteur3D.dir/Object3D.cpp.o CMakeFiles/moteur3D.dir/ObjectMesh.cpp.o CMakeFiles/moteur3D.dir/Matrix.cpp.o CMakeFiles/moteur3D.dir/PositionQuaternion.cpp.o
-/usr/bin/ranlib libmoteur3D.a
