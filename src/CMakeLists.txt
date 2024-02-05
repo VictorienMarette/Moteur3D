@@ -1,0 +1,1 @@
+add_library(moteur3D Object3D.cpp ObjectMesh.cpp Matrix.cpp PositionQuaternion.cpp)
