@@ -2,11 +2,11 @@
 
 
 Camera::Camera(double alpha_, double beta_, double near_, double far_): Object3D(){
-    double alpha = alpha_; double beta = beta_; double near = near_; double far = far_;
+    alpha = alpha_; beta = beta_; near = near_; far = far_;
 }
 
 Camera::Camera(double alpha_, double beta_, double near_, double far_, Position position_): Object3D(position_){
-    double alpha = alpha_; double beta = beta_; double near = near_; double far = far_;
+    alpha = alpha_; beta = beta_; near = near_; far = far_;
 }
 
 Matrix4x4 Camera::get_camera_space_matrix(){
@@ -27,7 +27,6 @@ Matrix4x4 Camera::get_camera_tranforme_matrix(){
 }
 
 void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
-    
     Matrix4x4 to_cam_s = get_camera_tranforme_matrix()*get_camera_space_matrix();
 
     Matrix4x4 obj_s_to_cam_s = Matrix4x4();
@@ -45,6 +44,11 @@ void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
             Position2 cor_a = vector4_to_position2(pa);
             Position2 cor_b = vector4_to_position2(pb);
             Position2 cor_c = vector4_to_position2(pc);
+
+            SDL_RenderDrawLine(renderer, cor_a.x, cor_a.y, cor_b.x, cor_b.y);
+            SDL_RenderDrawLine(renderer, cor_a.x, cor_a.y, cor_c.x, cor_c.y);
+            SDL_RenderDrawLine(renderer, cor_c.x, cor_c.y, cor_b.x, cor_b.y);
         }
     }
+
 }
