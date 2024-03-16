@@ -1,12 +1,13 @@
 #include "Camera.hpp"
 
 
-Camera::Camera(double alpha_, double beta_, double near_, double far_): Object3D(){
-    alpha = alpha_; beta = beta_; near = near_; far = far_;
+Camera::Camera(double alpha_, double beta_, double near_, double far_, double screen_s_x_, double screen_s_y_): Object3D(){
+    alpha = alpha_; beta = beta_; near = near_; far = far_; screen_s_x = screen_s_x_; screen_s_y = screen_s_y_;
 }
 
-Camera::Camera(double alpha_, double beta_, double near_, double far_, Position position_): Object3D(position_){
-    alpha = alpha_; beta = beta_; near = near_; far = far_;
+Camera::Camera(double alpha_, double beta_, double near_, double far_, double screen_s_x_, double screen_s_y_, 
+Position position_): Object3D(position_){
+    alpha = alpha_; beta = beta_; near = near_; far = far_; screen_s_x = screen_s_x_; screen_s_y = screen_s_y_;
 }
 
 Matrix4x4 Camera::get_camera_space_matrix(){
@@ -26,6 +27,10 @@ Matrix4x4 Camera::get_camera_tranforme_matrix(){
     return result;
 }
 
+Position2 Camera::adjuste_position_on_screen(Position2 pos){
+    return Position2(pos.x*screen_s_x + screen_s_x/2, pos.y*screen_s_y + screen_s_y/2);
+}
+
 void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
     Matrix4x4 to_cam_s = get_camera_tranforme_matrix()*get_camera_space_matrix();
 
@@ -41,14 +46,13 @@ void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
             Vector4 pb = obj_s_to_cam_s*position_to_vector4((*objects)[i].get_mesh().points[ib]);
             Vector4 pc = obj_s_to_cam_s*position_to_vector4((*objects)[i].get_mesh().points[ic]);
 
-            Position2 cor_a = vector4_to_position2(pa);
-            Position2 cor_b = vector4_to_position2(pb);
-            Position2 cor_c = vector4_to_position2(pc);
-
+            Position2 cor_a = adjuste_position_on_screen(vector4_to_position2(pa));
+            Position2 cor_b = adjuste_position_on_screen(vector4_to_position2(pb));
+            Position2 cor_c = adjuste_position_on_screen(vector4_to_position2(pc));
+            
             SDL_RenderDrawLine(renderer, cor_a.x, cor_a.y, cor_b.x, cor_b.y);
             SDL_RenderDrawLine(renderer, cor_a.x, cor_a.y, cor_c.x, cor_c.y);
             SDL_RenderDrawLine(renderer, cor_c.x, cor_c.y, cor_b.x, cor_b.y);
         }
     }
-
 }
