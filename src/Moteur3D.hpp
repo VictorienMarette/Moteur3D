@@ -14,7 +14,7 @@ class Moteur3D{
         //constructors
         Moteur3D(Camera *camera_, vector<Object3D> *objs_to_run_, vector<ObjectMesh> *objs_to_render_, int height_, int width_);
 
-        void run();
+        void run_one_cycle();
 
     private:
         Camera *camera;

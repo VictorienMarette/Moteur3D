@@ -9,16 +9,18 @@ Moteur3D::Moteur3D(Camera *camera_, vector<Object3D> *objs_to_run_, vector<Objec
 
     SDL_Init(SDL_INIT_VIDEO);       // Initializing SDL as Video
     SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);      // setting draw color
-    SDL_RenderClear(renderer);      // Clear the newly created window
-    SDL_RenderPresent(renderer);    // Reflects the changes done in the window.
 }
 
-void Moteur3D::run(){
+void Moteur3D::run_one_cycle(){
     for (int i = 0; i < objs_to_run->size(); i++){
         (*objs_to_run)[i].main();
     }
+
+    SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);
+    SDL_RenderClear(renderer);
+
     camera->render(objs_to_render, renderer);
-    SDL_RenderClear(renderer);      
+
     SDL_RenderPresent(renderer);
+    
 }

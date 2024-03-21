@@ -32,6 +32,8 @@ Position2 Camera::adjuste_position_on_screen(Position2 pos){
 }
 
 void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
     Matrix4x4 to_cam_s = get_camera_tranforme_matrix()*get_camera_space_matrix();
 
     Matrix4x4 obj_s_to_cam_s = Matrix4x4();
