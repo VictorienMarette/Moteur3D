@@ -63,11 +63,7 @@ int main(int argc, char * argv[]){
     vector<Object3D> objr = {ob};
     Moteur3D m = Moteur3D(&c,&objr,&od,600,600);
 
-    while (true)
-    {
-        SDL_Delay(10);
-        m.run_one_cycle();
-    }
+    m.run();    
     
 }
 

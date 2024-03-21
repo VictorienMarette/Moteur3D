@@ -13,7 +13,9 @@ class Moteur3D{
     public:
         //constructors
         Moteur3D(Camera *camera_, vector<Object3D> *objs_to_run_, vector<ObjectMesh> *objs_to_render_, int height_, int width_);
+        ~Moteur3D();
 
+        void run(float delay=0.0);
         void run_one_cycle();
 
     private:
@@ -24,6 +26,7 @@ class Moteur3D{
         int width;      // Width of the window
         SDL_Renderer *renderer = NULL;      // Pointer for the renderer
         SDL_Window *window = NULL;      // Pointer for the window
+        SDL_Event event;
 };
 
 
