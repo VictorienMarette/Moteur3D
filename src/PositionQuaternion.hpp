@@ -1,6 +1,7 @@
 #ifndef POSITIONQUATERNION_H
 #define POSITIONQUATERNION_H
 #include <iostream>
+#include <cmath>
 
 
 struct Position{
