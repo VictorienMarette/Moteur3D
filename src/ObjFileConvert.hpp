@@ -5,6 +5,8 @@ using namespace std;
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cstring> // for strerror
+#include <cerrno> // for errno
 #include "ObjectMesh.hpp"
 
 Mesh obj_file_convert(string adresse);

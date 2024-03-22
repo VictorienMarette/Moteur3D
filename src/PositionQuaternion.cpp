@@ -1,5 +1,4 @@
 #include "PositionQuaternion.hpp"
-#include <cmath>
 
 
 Position::Position(){x=0.;y=0.;z=0.;}
