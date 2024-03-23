@@ -1,6 +1,4 @@
 #include "ObjFileConvert.hpp"
-#include <string>
-#include <sstream>
 
 Polygone get_polygone_number(int nb, int x, int y, int z, int i){
     if(nb != 0 and nb != 1){throw runtime_error("Error: nb needs to be 1 or 0");}
