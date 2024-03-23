@@ -36,11 +36,9 @@ void Moteur3D::run_one_cycle(){
 
     //Events
     SDL_PollEvent(&event);
-    switch (event.type)
-        {
-            case SDL_QUIT:
-                break;
-        }
+    for (int i = 0; i < objs_to_run->size(); i++){
+        (*objs_to_run)[i].event_handeler(event);
+    }
 
     //render
     SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);

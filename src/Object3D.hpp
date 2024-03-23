@@ -2,6 +2,11 @@
 #define THREEDOBJECTS_H
 #include "Matrix.hpp"
 #include "PositionQuaternion.hpp"
+#include <sstream> 
+#include <iostream>
+#include <SDL.h>
+
+using namespace std;
 
 
 class Object3D{
@@ -23,6 +28,7 @@ class Object3D{
 
         //will be executed every frame
         virtual void main();
+        virtual void event_handeler(SDL_Event event);
 
     private:
 

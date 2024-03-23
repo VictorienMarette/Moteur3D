@@ -8,7 +8,8 @@ struct Position{
 
     Position();
     Position(double x_, double y_, double z_);
-    
+
+    Position operator+(const Position position);
     operator std::string() const;  
 
     double x;

@@ -1,8 +1,4 @@
 #include "Object3D.hpp"
-#include <sstream>
-using namespace std; 
-#include <iostream>
-
 
 Object3D::Object3D(){
     position = Position(0.,0.,0.);
@@ -42,4 +38,6 @@ Matrix4x4 Object3D::object_space_matrix(){
     return position_to_translation_matrix(position)*quaternion_to_matrix(quaternion);
 }
 
-void Object3D::main(){}
+void Object3D::main(){};
+
+void Object3D::event_handeler(SDL_Event event){};

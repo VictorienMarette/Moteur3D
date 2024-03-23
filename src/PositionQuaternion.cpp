@@ -5,6 +5,10 @@ Position::Position(){x=0.;y=0.;z=0.;}
 
 Position::Position(double x_, double y_, double z_){x=x_;y=y_;z=z_;}
 
+Position Position::operator+(const Position position){
+    return Position(x+position.x, y+position.y, z+position.z);
+}
+
 Position::operator std::string() const{
     return "(" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + ")";
 }
