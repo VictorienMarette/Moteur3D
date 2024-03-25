@@ -9,29 +9,25 @@ class Player: public Camera{
         Player(double alpha_, double beta_, double near_, double far_, double screen_s_x_, double screen_s_y_) 
         : Camera(alpha_, beta_, near_, far_, screen_s_x_, screen_s_y_){}
 
-        /*void event_handeler(SDL_Event event){
-            switch (n)
-            {
-            case 1:
-                a();
-                break;
-            case 2:
-                b();
-                d();
-                [[fallthrough]]; // I meant to do this!
-            case 3:
-                c();
-                break;
-            default:
-                d();
-                break;
+        void event_handeler(SDL_Event event){
+            if (event.type == SDL_KEYDOWN) {
+                const char* keyName = SDL_GetKeyName(event.key.keysym.sym);
+                if (*keyName == 'Z'){
+                    set_position(get_position() + Position(0.1,0.,0.));
+                }
+                if (*keyName == 'S'){
+                    set_position(get_position() + Position(-0.1,0.,0.));
+                }
+                if (*keyName == 'D'){
+                    set_position(get_position() + Position(0.,0.1,0.));
+                }
+                if (*keyName == 'Q'){
+                    set_position(get_position() + Position(0.,-0.1,0.));
+                }
+                
             }
-                }*/
-
-        
-        void main() override{
-            set_position(get_position() + Position(-0.1,0.,0.));
         }
+
 };
 
 int main(int argc, char * argv[]){
