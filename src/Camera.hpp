@@ -18,7 +18,7 @@ class Camera: public Object3D{
         Matrix4x4 get_camera_space_matrix();
         Matrix4x4 get_camera_tranforme_matrix();
         Position2 adjuste_position_on_screen(Position2 pos);
-        void render(vector<ObjectMesh> *objects, SDL_Renderer *renderer);
+        void render(vector<ObjectMesh *> *objects, SDL_Renderer *renderer);
 
     private:
         double screen_s_x;

@@ -31,22 +31,22 @@ Position2 Camera::adjuste_position_on_screen(Position2 pos){
     return Position2(pos.x*screen_s_x + screen_s_x/2, pos.y*screen_s_y + screen_s_y/2);
 }
 
-void Camera::render(vector<ObjectMesh> *objects, SDL_Renderer *renderer){
+void Camera::render(vector<ObjectMesh *> *objects, SDL_Renderer *renderer){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
     Matrix4x4 to_cam_s = get_camera_tranforme_matrix()*get_camera_space_matrix();
 
     Matrix4x4 obj_s_to_cam_s = Matrix4x4();
     for (int i = 0; i < (*objects).size(); i++){
-        obj_s_to_cam_s = to_cam_s*(*objects)[i].object_space_matrix();
-        for (int j = 0; j < (*objects)[i].get_mesh().polygones.size(); j++){
-            int ia = (*objects)[i].get_mesh().polygones[i].a;
-            int ib = (*objects)[i].get_mesh().polygones[i].b;
-            int ic = (*objects)[i].get_mesh().polygones[i].c;
+        obj_s_to_cam_s = to_cam_s*(*objects)[i]->object_space_matrix();
+        for (int j = 0; j < (*objects)[i]->get_mesh().polygones.size(); j++){
+            int ia = (*objects)[i]->get_mesh().polygones[i].a;
+            int ib = (*objects)[i]->get_mesh().polygones[i].b;
+            int ic = (*objects)[i]->get_mesh().polygones[i].c;
 
-            Vector4 pa = obj_s_to_cam_s*position_to_vector4((*objects)[i].get_mesh().points[ia]);
-            Vector4 pb = obj_s_to_cam_s*position_to_vector4((*objects)[i].get_mesh().points[ib]);
-            Vector4 pc = obj_s_to_cam_s*position_to_vector4((*objects)[i].get_mesh().points[ic]);
+            Vector4 pa = obj_s_to_cam_s*position_to_vector4((*objects)[i]->get_mesh().points[ia]);
+            Vector4 pb = obj_s_to_cam_s*position_to_vector4((*objects)[i]->get_mesh().points[ib]);
+            Vector4 pc = obj_s_to_cam_s*position_to_vector4((*objects)[i]->get_mesh().points[ic]);
 
             Position2 cor_a = adjuste_position_on_screen(vector4_to_position2(pa));
             Position2 cor_b = adjuste_position_on_screen(vector4_to_position2(pb));

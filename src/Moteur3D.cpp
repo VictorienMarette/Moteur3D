@@ -1,6 +1,6 @@
 #include "Moteur3D.hpp"
 
-Moteur3D::Moteur3D(Camera *camera_, vector<Object3D> *objs_to_run_, vector<ObjectMesh> *objs_to_render_, int height_, int width_){
+Moteur3D::Moteur3D(Camera *camera_, vector<Object3D *> *objs_to_run_, vector<ObjectMesh *> *objs_to_render_, int height_, int width_){
     camera = camera_;
     objs_to_run = objs_to_run_; 
     objs_to_render = objs_to_render_;
@@ -31,13 +31,13 @@ void Moteur3D::run(float delay){
 void Moteur3D::run_one_cycle(){
     //Objects updates
     for (int i = 0; i < objs_to_run->size(); i++){
-        (*objs_to_run)[i].main();
+        (*objs_to_run)[i]->main();
     }
 
     //Events
     SDL_PollEvent(&event);
     for (int i = 0; i < objs_to_run->size(); i++){
-        (*objs_to_run)[i].event_handeler(event);
+        (*objs_to_run)[i]->event_handeler(event);
     }
 
     //render

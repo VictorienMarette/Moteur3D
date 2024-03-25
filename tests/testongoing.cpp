@@ -29,7 +29,7 @@ class Player: public Camera{
                 }*/
 
         
-        void main(){
+        void main() override{
             set_position(get_position() + Position(-0.1,0.,0.));
         }
 };
@@ -38,8 +38,8 @@ int main(int argc, char * argv[]){
     Player c = Player(atan(1),atan(1),1.,16., 600,600);
     Mesh me = obj_file_convert("../../tests/untitled.obj");
     ObjectMesh ob = ObjectMesh(Position(10.,0.,0.), me);
-    vector<ObjectMesh> od = {ob};
-    vector<Object3D> objr = {ob, c};
+    vector<ObjectMesh *> od = {&ob};
+    vector<Object3D *> objr = {&ob, &c};
     Moteur3D m = Moteur3D(&c,&objr,&od,600,600);
 
     m.run();

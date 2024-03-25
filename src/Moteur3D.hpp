@@ -12,7 +12,7 @@ class Moteur3D{
     
     public:
         //constructors
-        Moteur3D(Camera *camera_, vector<Object3D> *objs_to_run_, vector<ObjectMesh> *objs_to_render_, int height_, int width_);
+        Moteur3D(Camera *camera_, vector<Object3D *> *objs_to_run_, vector<ObjectMesh *> *objs_to_render_, int height_, int width_);
         ~Moteur3D();
 
         void run(float delay=0.0);
@@ -20,8 +20,8 @@ class Moteur3D{
 
     private:
         Camera *camera;
-        vector<Object3D> *objs_to_run;
-        vector<ObjectMesh> *objs_to_render;
+        vector<Object3D *> *objs_to_run;
+        vector<ObjectMesh *> *objs_to_render;
         int height;     // Height of the window
         int width;      // Width of the window
         SDL_Renderer *renderer = NULL;      // Pointer for the renderer
