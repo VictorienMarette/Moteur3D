@@ -57,8 +57,9 @@ Mesh obj_file_convert(string adresse){
             z = z.substr(0, posz);
             i = i.substr(0, posi);
 
-            polygones_list->push_back(get_polygone_number(0, stoi(x), stoi(y), stoi(z), stoi(i)));
-            polygones_list->push_back(get_polygone_number(1, stoi(x), stoi(y), stoi(z), stoi(i)));
+            //appelle à get_polynome_number_superflux
+            polygones_list->push_back(get_polygone_number(0, stoi(x)-1, stoi(y)-1, stoi(z)-1, stoi(i)-1));
+            polygones_list->push_back(get_polygone_number(1, stoi(x)-1, stoi(y)-1, stoi(z)-1, stoi(i)-1));
         }
     }
     myfile.close();

@@ -28,7 +28,8 @@ Matrix4x4 Camera::get_camera_tranforme_matrix(){
 }
 
 Position2 Camera::adjuste_position_on_screen(Position2 pos){
-    return Position2(pos.x*screen_s_x + screen_s_x/2, pos.y*screen_s_y + screen_s_y/2);
+    //return Position2(pos.x*screen_s_x + screen_s_x/2, pos.y*screen_s_y + screen_s_y/2);
+    return Position2(pos.x*screen_s_x/10 + screen_s_x/20, pos.y*screen_s_y/10 + screen_s_y/20);
 }
 
 void Camera::render(vector<ObjectMesh *> *objects, SDL_Renderer *renderer){
@@ -40,9 +41,9 @@ void Camera::render(vector<ObjectMesh *> *objects, SDL_Renderer *renderer){
     for (int i = 0; i < (*objects).size(); i++){
         obj_s_to_cam_s = to_cam_s*(*objects)[i]->object_space_matrix();
         for (int j = 0; j < (*objects)[i]->get_mesh().polygones.size(); j++){
-            int ia = (*objects)[i]->get_mesh().polygones[i].a;
-            int ib = (*objects)[i]->get_mesh().polygones[i].b;
-            int ic = (*objects)[i]->get_mesh().polygones[i].c;
+            int ia = (*objects)[i]->get_mesh().polygones[j].a;
+            int ib = (*objects)[i]->get_mesh().polygones[j].b;
+            int ic = (*objects)[i]->get_mesh().polygones[j].c;
 
             Vector4 pa = obj_s_to_cam_s*position_to_vector4((*objects)[i]->get_mesh().points[ia]);
             Vector4 pb = obj_s_to_cam_s*position_to_vector4((*objects)[i]->get_mesh().points[ib]);
